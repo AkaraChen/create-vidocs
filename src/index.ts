@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { pkgInit, pkgInstall } from "./util/pkg";
+import { pkgInit, pkgInstall, pkgScript } from "./util/pkg";
 import prompt from "prompt";
 import { execaSync as execa } from "execa";
 import { existsSync } from "fs";
@@ -35,7 +35,12 @@ const run = async () => {
   consola.info("Installing dependencies...");
   await copy(template, process.cwd());
   pkgInstall("@akrc/vidocs");
+  pkgScript("dev", "vidocs dev");
+  pkgScript("build", "vidocs build");
   consola.success("Create vidocs successfully");
+  consola.log("Run following script to get started:");
+  consola.log(`cd ${name}`);
+  consola.log("vidocs dev");
 };
 
 run();
