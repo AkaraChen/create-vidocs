@@ -37,10 +37,11 @@ const run = async () => {
   pkgInstall("@akrc/vidocs");
   pkgScript("dev", "vidocs dev");
   pkgScript("build", "vidocs build");
+  pkgScript("build:ssg", "vidocs build:ssg");
   consola.success("Create vidocs successfully");
   consola.log("Run following script to get started:");
-  consola.log(`cd ${name}`);
-  consola.log("vidocs dev");
+  consola.log(` cd ${name}`);
+  consola.log(" vidocs dev");
 };
 
 run();

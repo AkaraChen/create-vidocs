@@ -8,7 +8,7 @@ esbuild.build({
     platform: "node",
     color: true,
     logLevel: "info",
-    minify: false,
+    minify: true,
 }).catch(() => {
     process.exit(1)
 })
