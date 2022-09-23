@@ -32,9 +32,7 @@ export const pkgInit = () => {
   }
 };
 
-export const pkgInstall = (pkg: string, dev: boolean = false) => {
-  execa(`${pkgManager} add ${pkg} ${dev ? "-D" : ""}`.trim());
-};
+export const pkgInstall = () => execa(`${pkgManager} install`);
 
 export const pkgScript = (script: string, command: string) => {
   execa(`npm set-script ${script} "${command}"`);

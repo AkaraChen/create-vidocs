@@ -32,16 +32,17 @@ const run = async () => {
   execa(`mkdir ${name}`);
   process.chdir(path.resolve(process.cwd(), `./${name}`));
   pkgInit();
-  consola.info("Installing dependencies...");
+  consola.info("Copy templates...");
   await copy(template, process.cwd());
-  pkgInstall("@akrc/vidocs");
-  pkgScript("dev", "vidocs dev");
-  pkgScript("build", "vidocs build");
-  pkgScript("build:ssg", "vidocs build:ssg");
+  consola.info("Install dependencies...");
+  pkgInstall();
+  consola.info("Set scripts...");
+  pkgScript("dev", "vite dev");
+  pkgScript("build", "vite build");
   consola.success("Create vidocs successfully");
   consola.log("Run following script to get started:");
   consola.log(` cd ${name}`);
-  consola.log(" vidocs dev");
+  consola.log(" pnpm run dev");
 };
 
 run();
