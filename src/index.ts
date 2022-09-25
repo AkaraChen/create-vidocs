@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { pkgInit, pkgInstall, pkgScript } from "./util/pkg";
+import { getPkgManager, pkgInstall } from "./util/pkg";
 import prompt from "prompt";
 import { execaSync as execa } from "execa";
 import { existsSync } from "fs";
@@ -31,18 +31,14 @@ const run = async () => {
   }
   execa(`mkdir ${name}`);
   process.chdir(path.resolve(process.cwd(), `./${name}`));
-  pkgInit();
   consola.info("Copy templates...");
   await copy(template, process.cwd());
   consola.info("Install dependencies...");
   pkgInstall();
-  consola.info("Set scripts...");
-  pkgScript("dev", "vite dev");
-  pkgScript("build", "vite build");
   consola.success("Create vidocs successfully");
   consola.log("Run following script to get started:");
   consola.log(` cd ${name}`);
-  consola.log(" pnpm run dev");
+  consola.log(` ${getPkgManager()} run dev`);
 };
 
 run();
